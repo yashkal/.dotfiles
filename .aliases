@@ -19,3 +19,8 @@ alias tree3="tree -d -L 3"  # Tree list, depth 3
 
 # Homebrew
 alias brewery="brew update && brew upgrade && brew cleanup"
+
+# Open man page in pdf (Preview)
+function manpdf() {
+ man -t "${1}" | open -f -a /Applications/Preview.app/
+}
