@@ -12,10 +12,13 @@ alias lsa="ls -la"       # List in long format, all
 alias lsd="ls -ld"       # List in long format, only directories
 
 # tree
-alias treed="tree -d"       # Tree list, directories
-alias tree1="tree -d -L 1"  # Tree list, depth 1
-alias tree2="tree -d -L 2"  # Tree list, depth 2
-alias tree3="tree -d -L 3"  # Tree list, depth 3
+alias tree1="tree -L 1"     # Tree list, depth 1
+alias tree2="tree -L 2"     # Tree list, depth 2
+alias tree3="tree -L 3"     # Tree list, depth 3
+alias treed="tree -d"       # Tree directories
+alias treed1="tree -d -L 1" # Tree directories, depth 1
+alias treed2="tree -d -L 2" # Tree directories, depth 2
+alias treed3="tree -d -L 3" # Tree directories, depth 3
 
 # Homebrew
 alias brewery="brew update && brew upgrade && brew cleanup"
