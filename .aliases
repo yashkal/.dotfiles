@@ -16,3 +16,6 @@ alias treed="tree -d"       # Tree list, directories
 alias tree1="tree -d -L 1"  # Tree list, depth 1
 alias tree2="tree -d -L 2"  # Tree list, depth 2
 alias tree3="tree -d -L 3"  # Tree list, depth 3
+
+# Homebrew
+alias brewery="brew update && brew upgrade && brew cleanup"
