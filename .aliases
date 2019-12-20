@@ -18,7 +18,7 @@ alias v="vim"
 alias view="vim -R"
 
 # Quick navigation to config files
-alias bp="vim ~/.bash_profile"
+alias brc="vim ~/.bashrc"
 alias als="vim ~/.aliases"
 alias vrc="vim ~/.vim/vimrc"
 alias yrc="vim ~/.yabairc"
