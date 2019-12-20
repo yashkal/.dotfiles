@@ -1,6 +1,6 @@
-.PHONY = all dots clean vundle
+.PHONY = all dots clean vundle brew
 
-all: dots vundle brew
+all: dots vundle
 
 clean: clean-dots clean-vundle
 
