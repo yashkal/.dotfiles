@@ -1,0 +1,198 @@
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               Plugins (Vundle)                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" run the following command to set up Vundle
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+set nocompatible              " required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+
+" Below are requirements for deoplete.nvim to work with Vim 8
+" https://github.com/Shougo/deoplete.nvim#requirements
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+
+"Plugin 'lervag/vimtex'
+Plugin 'dense-analysis/ale'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'deoplete-plugins/deoplete-jedi'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'mhinz/vim-signify'
+Plugin 'junegunn/goyo.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'nvie/vim-flake8'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+"Plugin 'jalvesaq/Nvim-R'
+"Plugin 'roxma/nvim-completion-manager'
+"Plugin 'gaalcaras/ncm-R'
+" ...
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Mappings                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Remap space to leader
+nnoremap <SPACE> <Nop>
+let mapleader="\<SPACE>"
+let maplocalleader="\\"
+" nnoremap <LEADER>i :echo "Hello"<CR>
+
+" Make it easier to edit .vimrc
+nnoremap <LEADER>ev :vsplit $MYVIMRC<CR>
+nnoremap <LEADER>sv :source $MYVIMRC<CR>
+
+" Insert newline
+nnoremap <CR> i<CR><ESC>
+nnoremap <LEADER><CR> O<ESC>j
+
+" Navigations
+nnoremap K     {zz
+nnoremap J     }zz
+nnoremap H     ^
+nnoremap L     $
+vnoremap K     k{zz
+vnoremap J     j}zz
+vnoremap H     ^
+vnoremap L     $
+
+nnoremap <LEADER>k K
+nnoremap <LEADER>j J
+
+" Split navigation
+nnoremap <C-j> <C-w><C-j> 
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+
+" Quick escape in insert mode
+inoremap jk <ESC>
+" Make word uppercase in insert mode
+inoremap <C-U> <ESC>bgUiwea
+
+noremap Zz <C-w>_ \| <C-w>\|
+noremap Zo <C-w>=
+
+" Move lines of text quicker
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" TODO:
+" Clear highlighting when using escape (Causes issues when starting vim???)
+"nnoremap <silent> <ESC> :noh<CR><ESC>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Vim Configuration                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" General
+set number relativenumber   " Show line numbers
+set numberwidth=5   " Make line numbers wider
+set showmatch	" Highlight matching brace
+set textwidth=80   " Line wrap (number of cols)
+set visualbell	" Use visual bell (no beeping)
+
+set hlsearch	" Highlight all search results
+set incsearch	" Searches for strings incrementally
+set smartcase	" Enable smart-case search
+
+set autoindent	" Auto-indent new lines
+set shiftwidth=4    " Number of auto-indent spaces
+set smartindent	" Enable smart-indent
+set smarttab	" Enable smart-tabs
+set softtabstop=4   " Number of spaces per Tab
+
+set splitbelow splitright   " Position of new windows
+
+" Advanced
+set ruler   " Show row and column ruler information
+
+set undolevels=1000 " Number of undo levels
+set backspace=indent,eol,start	" Backspace behaviour
+
+set encoding=utf-8
+set path+=**	" Search down into sub-directories for :find
+set wildmenu
+
+set updatetime=100
+set completeopt=longest,menuone
+set omnifunc=syntaxcomplete#Complete
+
+autocmd BufRead,BufNewFile *.py let python_highlight_all=1
+syntax on
+
+au BufNewFile,BufRead *.py
+    \ setlocal tabstop=4 |
+    \ setlocal softtabstop=4	|
+    \ setlocal shiftwidth=4	|
+    \ setlocal textwidth=79	|
+    \ setlocal expandtab |
+    \ setlocal autoindent	|
+    \ setlocal fileformat=unix   |
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ setlocal tabstop=2 |
+    \ setlocal softtabstop=2	|
+    \ setlocal shiftwidth=2	|
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Plugin Configuration                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_fixers = {'python': ['isort', 'black']}
+let g:ale_fix_on_save=1
+let g:deoplete#enable_at_startup = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%*
+"set statusline+=%{SyntasticStatuslineFlag()}
+
+let g:deoplete#sources#jedi#python_path="python3"
+let g:jedi#completions_command="<C-N>"
+let g:jedi#documentation_command=""
+"let g:jedi#auto_initialization=0
+
+" R output is highlighted with current colorscheme
+let g:rout_follow_colorscheme = 1
+
+" R commands in R output are highlighted
+let g:Rout_more_colors = 1
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<TAB>"
+let g:UltiSnipsJumpForwardTrigger="<TAB>"
+let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
+let g:UltiSnipsListSnippets="<C-S>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
