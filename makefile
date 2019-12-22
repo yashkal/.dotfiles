@@ -43,6 +43,7 @@ dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.tmux.conf ~
 	-@ln -sv ~/.dotfiles/.yabairc ~
 	-@ln -sv ~/.dotfiles/.skhdrc ~
+	-@ln -sv ~/.dotfiles/.inputrc ~
 	-@ln -sv ~/.dotfiles/.vim ~
 	-vim +PluginInstall +qall
 
@@ -53,5 +54,6 @@ clean-dots:
 	-@rm -v ~/.tmux.conf
 	-@rm -v ~/.yabairc
 	-@rm -v ~/.skhdrc
+	-@rm -v ~/.inputrc
 	-rm -rf ~/.vim
 	-rm -rf .vim/bundle/
