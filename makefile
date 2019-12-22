@@ -15,6 +15,7 @@ brew: /usr/local/bin/brew
 	@echo
 	@echo "Run the following to use new bash"
 	@echo "    chsh -s /usr/local/bin/bash"
+	@echo
 
 clean-brew:
 	brew ls -1 | xargs brew rm
@@ -40,6 +41,8 @@ dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.bashrc ~
 	-@ln -sv ~/.dotfiles/.aliases ~
 	-@ln -sv ~/.dotfiles/.tmux.conf ~
+	-@ln -sv ~/.dotfiles/.yabairc ~
+	-@ln -sv ~/.dotfiles/.skhdrc ~
 	-@ln -sv ~/.dotfiles/.vim ~
 	-vim +PluginInstall +qall
 
@@ -48,5 +51,7 @@ clean-dots:
 	-@rm -v ~/.bashrc
 	-@rm -v ~/.aliases
 	-@rm -v ~/.tmux.conf
+	-@rm -v ~/.yabairc
+	-@rm -v ~/.skhdrc
 	-rm -rf ~/.vim
 	-rm -rf .vim/bundle/
