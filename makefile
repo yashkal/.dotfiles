@@ -13,7 +13,7 @@ clean-all: clean-dots clean-brew
 brew: /usr/local/bin/brew
 	brew bundle 
 	@echo
-	@echo "If you haven't done so, run the following to updated Bash"
+	@echo "If you haven't done so, run the following to use the newest Bash shell"
 	@echo "    chsh -s /usr/local/bin/bash"
 	@echo
 

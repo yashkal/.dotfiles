@@ -8,30 +8,16 @@
 "                               Plugins (Vundle)                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" run the following command to set up Vundle
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set nocompatible
+filetype off
 
-set nocompatible              " required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-
 " Below are requirements for deoplete.nvim to work with Vim 8
-" https://github.com/Shougo/deoplete.nvim#requirements
 Plugin 'roxma/nvim-yarp'
 Plugin 'roxma/vim-hug-neovim-rpc'
-
-"Plugin 'lervag/vimtex'
+" ...
 Plugin 'dense-analysis/ale'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'deoplete-plugins/deoplete-jedi'
@@ -46,11 +32,9 @@ Plugin 'tpope/vim-surround'
 "Plugin 'jalvesaq/Nvim-R'
 "Plugin 'roxma/nvim-completion-manager'
 "Plugin 'gaalcaras/ncm-R'
-" ...
+call vundle#end()
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Mappings                                   "

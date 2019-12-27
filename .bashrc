@@ -37,4 +37,5 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
-source ~/.aliases
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

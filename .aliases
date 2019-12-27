@@ -10,12 +10,10 @@ alias -- -="cd -"
 # Quick command aliases
 alias apps="yabai -m query --windows | jq '.[].app'"
 alias cat="bat"
-alias find="fd"
-alias grep="rg"
 alias ls="exa -h"
+alias m="make"
 alias t="tmux"
 alias v="vim"
-alias view="vim -R"
 
 # Quick navigation to config files
 alias brc="vim ~/.bashrc"
@@ -34,9 +32,9 @@ alias trash="trash -v"
 alias ln="ln -v"
 
 # ls
-alias lsh="ls -GFh -ld .?* --color=auto"    # List hidden files
-alias lsa="ls -GFh -la"			    # List in long format, all
-alias lsd="ls -GFh -ld"			    # List in long format, only directories
+alias lsh="ls --color=auto" # List hidden files
+alias lsa="ls -la"          # List in long format, all
+alias lsd="ls -ld"  	    # List in long format, only directories
 
 # tree
 alias tree1="tree -L 1"     # Tree list, depth 1
@@ -49,21 +47,3 @@ alias treed3="tree -d -L 3" # Tree directories, depth 3
 
 # Homebrew
 alias brewery="brew update && brew upgrade && brew cleanup"
-
-# cd() and bd() for easier file navigation  
-
-# Open man page in pdf (Preview)
-function manpdf() {
- man -t "${1}" | open -f -a /Applications/Preview.app/
-}
-
-function pywal {
-    # generate color scheme from current wallpaper
-    current_wallpaper="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')"
-    wal -i $current_wallpaper -n
-}
-
-sshs() {
-        ssh $@ "cat > /tmp/.bashrc_temp" < ~/.bash_profile
-        ssh -t $@ "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
-}
