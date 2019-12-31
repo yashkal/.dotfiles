@@ -25,10 +25,10 @@ rcmd - f : yabai -m window --toggle zoom-fullscreen
 rshift + cmd - f : yabai -m window --toggle native-fullscreen
 
 # focus window
-alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
+ralt - j : yabai -m window --focus south
+ralt - k : yabai -m window --focus north
+ralt - l : yabai -m window --focus east
+ralt - h : yabai -m window --focus west
 
 # swap window
 rshift + alt - h : yabai -m window --swap west
@@ -47,16 +47,16 @@ rshift + alt - 0 : yabai -m space --balance
 
 
 # float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float;\
+ralt - t : yabai -m window --toggle float;\
           yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky, float and resize to picture-in-picture size
-alt - p : yabai -m window --toggle sticky;\
+ralt - p : yabai -m window --toggle sticky;\
           yabai -m window --grid 5:5:4:0:1:1
 
 # change layout of desktop
-ctrl + alt - a : yabai -m space --layout bsp
-ctrl + alt - d : yabai -m space --layout float
+ctrl + ralt - a : yabai -m space --layout bsp
+ctrl + ralt - d : yabai -m space --layout float
 
 ## make floating window fill screen
 #shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1

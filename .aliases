@@ -12,6 +12,7 @@ alias apps="yabai -m query --windows | jq '.[].app'"
 alias cat="bat"
 alias ls="exa -h"
 alias m="make"
+alias p="python3"
 alias t="tmux"
 alias v="vim"
 

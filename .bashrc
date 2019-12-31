@@ -11,6 +11,7 @@ shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s cmdhist
 shopt -s dirspell
+shopt -s extglob
 shopt -s histappend
 shopt -s lithist
 
