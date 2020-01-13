@@ -7,6 +7,8 @@
 #  \__, |\__,_|_.__/ \__,_|_|_|  \___|
 #  |___/                              
 
+# TODO: Allow fullscreen mode not to cover top of bar
+
 # bar settings
 yabai -m config status_bar                   on
 yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"

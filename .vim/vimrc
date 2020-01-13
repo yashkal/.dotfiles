@@ -15,12 +15,15 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" Below are requirements for deoplete.nvim to work with Vim 8
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-" ...
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 Plugin 'dense-analysis/ale'
-Plugin 'Shougo/deoplete.nvim'
 Plugin 'deoplete-plugins/deoplete-jedi'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'SirVer/ultisnips'
@@ -91,6 +94,8 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
+map <F9> :set wrap!<cr>
+
 " TODO:
 " Clear highlighting when using escape (Causes issues when starting vim???)
 "nnoremap <silent> <ESC> :noh<CR><ESC>
@@ -154,7 +159,6 @@ au BufNewFile,BufRead *.js, *.html, *.css
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_fixers = {'python': ['isort', 'black']}
 let g:ale_fix_on_save=1
-let g:deoplete#enable_at_startup = 1
 
 "set statusline+=%#warningmsg#
 "set statusline+=%*
@@ -175,7 +179,7 @@ set statusline+=\ %P    "percent through file
 let g:deoplete#sources#jedi#python_path="python3"
 "let g:jedi#completions_command="<C-N>"
 "let g:jedi#documentation_command=""
-"let g:jedi#auto_initialization=0
+let g:jedi#auto_initialization=0
 
 " R output is highlighted with current colorscheme
 let g:rout_follow_colorscheme = 1

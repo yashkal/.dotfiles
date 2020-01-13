@@ -10,6 +10,9 @@ alias -- -="cd -"
 # Quick command aliases
 alias apps="yabai -m query --windows | jq '.[].app'"
 alias cat="bat"
+alias d="docker"
+alias dc="docker-compose"
+alias g="git"
 alias ls="exa -h"
 alias m="make"
 alias p="python3"
@@ -26,6 +29,7 @@ alias zrc="vim ~/.zshrc"
 
 # verbose output for common commands
 alias cp="cp -v"
+alias diff="diff --color=always"
 alias mkdir="mkdir -v"
 alias mv="mv -v"
 alias rm="rm -v"
