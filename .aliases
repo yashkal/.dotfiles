@@ -8,14 +8,22 @@ alias .....="cd ../../../.."
 alias -- -="cd -"
 
 # Quick command aliases
+alias apps="yabai -m query --windows | jq '.[].app'"
+alias cat="bat"
 alias g="git"
+alias ls="exa -h"
 alias m="make"
+alias p="python3"
+alias t="tmux"
 alias v="vim"
 
 # Quick navigation to config files
 alias brc="vim ~/.bashrc"
 alias als="vim ~/.aliases"
 alias vrc="vim ~/.vim/vimrc"
+alias yrc="vim ~/.yabairc"
+alias src="vim ~/.skhdrc"
+alias zrc="vim ~/.zshrc"
 
 # Verbose output for common commands
 alias cp="cp -v"
@@ -23,4 +31,8 @@ alias diff="diff --color=always"
 alias mkdir="mkdir -v"
 alias mv="mv -v"
 alias rm="rm -v"
+alias trash="trash -v"
 alias ln="ln -v"
+
+# Homebrew
+alias brewery="brew update && brew upgrade && brew cleanup"

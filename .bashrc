@@ -4,6 +4,10 @@
 # | |_) | (_| \__ \ | | | | | (__ 
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
+
 # Options
 shopt -s autocd
 shopt -s cdable_vars
@@ -35,3 +39,13 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[33;1m\]\w\[\033[m\]\n➥ "
+
+# From Homebrew
+[ -x /usr/local/opt/coreutils/libexec/gnubin ] && export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # for gnu coreutils
+[ -x /usr/local/opt/findutils/libexec/gnubin ] && export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH" # for gnu findutils
+[ -x /usr/local/opt/grep/libexec/gnubin ] && export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH" # for gnu grep
+[ -x /usr/local/opt/make/libexec/gnubin ] && export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # for gnu make
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[ -f ~/.aliases ] && source ~/.aliases
