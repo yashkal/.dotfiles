@@ -1,0 +1,39 @@
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Vim Configuration                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set number relativenumber
+set numberwidth=5
+set ruler
+set showmatch
+set textwidth=80
+set visualbell
+syntax on
+
+set hlsearch
+set incsearch
+set smartcase
+
+set autoindent
+set shiftwidth=4
+set smartindent
+set smarttab
+set softtabstop=4
+
+set splitbelow splitright
+
+set undolevels=1000
+set backspace=indent,eol,start
+
+set encoding=utf-8
+set path+=**
+set wildmenu
+
+set updatetime=100
+set completeopt=longest,menuone
