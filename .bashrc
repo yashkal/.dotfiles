@@ -22,6 +22,7 @@ shopt -s lithist
 export CLICOLOR=1
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+export HISTIGNORE="ls*:cat*:SECRET*:clear"
 export HISTCONTROL=ignoredups
 export LESS="--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init"
 # Set colors for less. Borrowed from https://wiki.archlinux.org/index.php/Color_output_in_console#less .
