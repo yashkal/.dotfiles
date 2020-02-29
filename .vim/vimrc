@@ -37,6 +37,52 @@ call vundle#end()
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Mappings                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Remap space to leader
+nnoremap <SPACE> <Nop>
+let mapleader="\<SPACE>"
+let maplocalleader="\\"
+
+" Make it easier to edit .vimrc
+nnoremap <LEADER>ev :vsplit $MYVIMRC<CR>
+nnoremap <LEADER>sv :source $MYVIMRC<CR>
+
+" Insert newline
+nnoremap <CR> i<CR><ESC>
+nnoremap <LEADER><CR> O<ESC>j
+
+" Navigations
+nnoremap K     {zz
+nnoremap J     }zz
+nnoremap H     ^
+nnoremap L     $
+vnoremap K     k{zz
+vnoremap J     j}zz
+vnoremap H     ^
+vnoremap L     $
+
+nnoremap <LEADER>k K
+nnoremap <LEADER>j J
+
+" Faster window navigation
+nnoremap <C-j> <C-w><C-j> 
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+
+" Quick escape in insert mode
+inoremap jk <ESC>
+" Make word uppercase in insert mode
+inoremap <C-U> <ESC>bgUiwea
+
+noremap Zz <C-w>_ \| <C-w>\|
+noremap Zo <C-w>=
+
+map <F9> :set wrap!<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              Vim Configuration                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -104,8 +150,6 @@ set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 
 let g:deoplete#sources#jedi#python_path="python3"
-"let g:jedi#completions_command="<C-N>"
-"let g:jedi#documentation_command=""
 let g:jedi#auto_initialization=0
 
 " Trigger configuration. Do not use <tab> if you use
