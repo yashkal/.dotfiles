@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Easier navigation: .., ..., ...., ....., and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+# Quick command aliases
+alias g="git"
+alias m="make"
+alias v="vim"
+
+# Quick navigation to config files
+alias brc="vim ~/.bashrc"
+alias als="vim ~/.aliases"
+alias vrc="vim ~/.vim/vimrc"
+
+# Verbose output for common commands
+alias cp="cp -v"
+alias diff="diff --color=always"
+alias mkdir="mkdir -v"
+alias mv="mv -v"
+alias rm="rm -v"
+alias ln="ln -v"
