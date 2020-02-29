@@ -15,6 +15,17 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+Plugin 'dense-analysis/ale'
+Plugin 'deoplete-plugins/deoplete-jedi'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'mhinz/vim-signify'
 Plugin 'junegunn/goyo.vim'
@@ -24,6 +35,7 @@ Plugin 'tpope/vim-surround'
 call vundle#end()
 
 filetype plugin indent on
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              Vim Configuration                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -58,9 +70,43 @@ set wildmenu
 set updatetime=100
 set completeopt=longest,menuone
 
+au BufNewFile,BufRead *.py
+    \ setlocal tabstop=4 |
+    \ setlocal softtabstop=4	|
+    \ setlocal shiftwidth=4	|
+    \ setlocal textwidth=79	|
+    \ setlocal expandtab |
+    \ setlocal autoindent	|
+    \ setlocal fileformat=unix   |
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ setlocal tabstop=2 |
+    \ setlocal softtabstop=2	|
+    \ setlocal shiftwidth=2	|
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Plugin Configuration                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ale_fixers = {'python': ['isort', 'black']}
+let g:ale_fix_on_save=1
+
+set statusline=%f       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
+let g:deoplete#sources#jedi#python_path="python3"
+"let g:jedi#completions_command="<C-N>"
+"let g:jedi#documentation_command=""
+let g:jedi#auto_initialization=0
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
