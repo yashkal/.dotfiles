@@ -16,6 +16,12 @@ shopt -s extglob
 shopt -s histappend
 shopt -s lithist
 
+# History
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTIGNORE="ls*:cat*:SECRET*:clear"
+export HISTCONTROL=ignoredups
+
 # Colors
 export CLICOLOR=1
 export LESS="--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init"
