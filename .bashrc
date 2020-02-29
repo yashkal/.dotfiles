@@ -22,6 +22,7 @@ shopt -s lithist
 export CLICOLOR=1
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+export HISTIGNORE="ls*:cat*:SECRET*:clear"
 export HISTCONTROL=ignoredups
 export LESS="--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init"
 # Set colors for less. Borrowed from https://wiki.archlinux.org/index.php/Color_output_in_console#less .
@@ -42,5 +43,6 @@ export PROMPT_COMMAND="echo"
 [ -x /usr/local/opt/grep/libexec/gnubin ] && export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH" # for gnu grep
 [ -x /usr/local/opt/make/libexec/gnubin ] && export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # for gnu make
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 [ -f ~/.aliases ] && source ~/.aliases

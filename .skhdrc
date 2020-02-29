@@ -16,7 +16,7 @@
 #rcmd - return : open -a finder
 rshift + cmd - s : open -a "spotify"
 rshift + cmd - t : open -a "iterm"
-rshift + cmd - c : open -a "google chrome"
+rshift + cmd - c : open -a "Brave Browser"
 
 # toggle window fullscreen zoom
 rcmd - f : yabai -m window --toggle zoom-fullscreen
