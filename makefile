@@ -11,6 +11,7 @@ dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.bash_profile ~
 	-@ln -sv ~/.dotfiles/.bashrc ~
 	-@ln -sv ~/.dotfiles/.aliases ~
+	-@ln -sv ~/.dotfiles/.inputrc ~
 	-@ln -sv ~/.dotfiles/.vim ~
 	-vim +PluginInstall +qall
 
@@ -18,5 +19,6 @@ clean-dots:
 	-@rm -v ~/.bash_profile
 	-@rm -v ~/.bashrc
 	-@rm -v ~/.aliases
+	-@rm -v ~/.inputrc
 	-rm -rf ~/.vim
 	-rm -rf .vim/bundle/
