@@ -152,6 +152,8 @@ set statusline+=\ %P    "percent through file
 let g:deoplete#sources#jedi#python_path="python3"
 let g:jedi#auto_initialization=0
 
+let g:jedi#completions_command=''
+
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<TAB>"
