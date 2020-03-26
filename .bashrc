@@ -23,7 +23,7 @@ shopt -s lithist
 # History
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-export HISTIGNORE="ls*:cat*:SECRET*:clear"
+export HISTIGNORE="SECRET*:clear"
 export HISTCONTROL=ignoredups
 
 # Colors
