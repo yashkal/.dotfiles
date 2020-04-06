@@ -18,6 +18,7 @@ alias t="tmux"
 alias v="vim"
 
 # Quick navigation to config files
+alias dots="cd ~/.dotfiles/"
 alias brc="vim ~/.bashrc"
 alias als="vim ~/.aliases"
 alias vrc="vim ~/.vim/vimrc"
