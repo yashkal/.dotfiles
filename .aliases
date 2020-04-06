@@ -44,3 +44,7 @@ mantoc () {
     [ $# -eq 1 ] && man $1 | grep '^[A-Z]'
     [ $# -eq 2 ] && man -P "less -p ^'${2}'" $1
 }
+
+wttr () {
+    curl -s https://wttr.in/ | head -n 7
+}
