@@ -37,3 +37,10 @@ alias ln="ln -v"
 
 # Homebrew
 alias brewery="brew update && brew upgrade && brew cleanup"
+
+# Make reading man pages easier
+mantoc () {
+    [ $# -gt 2 ] && echo Too many arguments
+    [ $# -eq 1 ] && man $1 | grep '^[A-Z]'
+    [ $# -eq 2 ] && man -P "less -p ^'${2}'" $1
+}
