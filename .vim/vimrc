@@ -16,22 +16,23 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
+    Plugin 'Shougo/deoplete.nvim'
+    Plugin 'roxma/nvim-yarp'
+    Plugin 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
 Plugin 'dense-analysis/ale'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'deoplete-plugins/deoplete-jedi'
+Plugin 'junegunn/goyo.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'mhinz/vim-signify'
-Plugin 'junegunn/goyo.vim'
 Plugin 'honza/vim-snippets'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 
 filetype plugin indent on
@@ -48,43 +49,59 @@ let maplocalleader="\\"
 " Make it easier to edit .vimrc
 nnoremap <LEADER>ev :vsplit $MYVIMRC<CR>
 nnoremap <LEADER>sv :source $MYVIMRC<CR>
+nnoremap <LEADER>ff :FZF<CR>
+nnoremap <LEADER>ls :!ls -lF<CR>
+nnoremap <LEADER>=  m'gg=G`'zz
 
 " Insert newline
-nnoremap <CR> i<CR><ESC>
-nnoremap <LEADER><CR> O<ESC>j
+nnoremap <CR>		i<CR><ESC>
+nnoremap <LEADER><CR>	O<ESC>j
 
-" Navigations
-nnoremap K     {zz
-nnoremap J     }zz
-nnoremap H     ^
-nnoremap L     $
-vnoremap K     k{zz
-vnoremap J     j}zz
-vnoremap H     ^
-vnoremap L     $
+" Navigations (do not center after operator pending mode)
+noremap K   {zz
+noremap J   }zz
+noremap H   ^
+noremap L   $
+onoremap K  {
+onoremap J  }
 
-nnoremap <LEADER>k K
-nnoremap <LEADER>j J
+" Remap overwritten keys from previous mappings using leader
+nnoremap <LEADER>K  K
+nnoremap <LEADER>J  J
+nnoremap <LEADER>H  H
+nnoremap <LEADER>M  M
+nnoremap <LEADER>L  L
 
 " Faster window navigation
-nnoremap <C-j> <C-w><C-j> 
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
-nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j>	<C-w><C-j> 
+nnoremap <C-k>	<C-w><C-k>
+nnoremap <C-l>	<C-w><C-l>
+nnoremap <C-h>	<C-w><C-h>
+
+" Quick find and replace (substitute)
+noremap s :s//g<LEFT><LEFT>
+nnoremap S :s%//g<LEFT><LEFT>
 
 " Quick escape in insert mode
 inoremap jk <ESC>
+
 " Make word uppercase in insert mode
-inoremap <C-U> <ESC>bgUiwea
+inoremap <C-U>	<ESC>bgUiwea
 
-noremap Zz <C-w>_ \| <C-w>\|
-noremap Zo <C-w>=
+" Zoom on panes
+noremap Zz  <C-w>_ \| <C-w>\|
+noremap Zo  <C-w>=
 
-map <F9> :set wrap!<cr>
+" Function keys
+map <F2>    :set paste!<CR>:echo "'paste' is set to" &paste<CR>
+map <F9>    :set wrap!<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              Vim Configuration                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let $BASH_ENV = "~/.aliases"
+syntax on
 
 set number relativenumber
 set numberwidth=5
@@ -92,11 +109,10 @@ set ruler
 set showmatch
 set textwidth=80
 set visualbell
-syntax on
 
-set hlsearch
 set incsearch
 set smartcase
+set undofile
 
 set autoindent
 set shiftwidth=4
@@ -112,34 +128,13 @@ set backspace=indent,eol,start
 set encoding=utf-8
 set path+=**
 set wildmenu
+set wildmode=longest
 
 set updatetime=100
-set completeopt=longest,menuone
+set completeopt=longest,menuone,popup
 
-au BufNewFile,BufRead *.py
-    \ setlocal tabstop=4 |
-    \ setlocal softtabstop=4	|
-    \ setlocal shiftwidth=4	|
-    \ setlocal textwidth=79	|
-    \ setlocal expandtab |
-    \ setlocal autoindent	|
-    \ setlocal fileformat=unix   |
-
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ setlocal tabstop=2 |
-    \ setlocal softtabstop=2	|
-    \ setlocal shiftwidth=2	|
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Plugin Configuration                             "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:ale_fixers = {'python': ['isort', 'black']}
-let g:ale_fix_on_save=1
-
-set statusline=%f       "tail of the filename
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
+set laststatus=2
+set statusline=%f\      "tail of the filename
 set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
@@ -149,10 +144,38 @@ set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 
+augroup filetype_python
+    au!
+    au FileType python nnoremap <buffer> <LOCALLEADER>c I#\ <ESC>
+    au BufNewFile,BufRead *.py
+		\ setlocal tabstop=4 |
+		\ setlocal softtabstop=4	|
+		\ setlocal shiftwidth=4	|
+		\ setlocal textwidth=79	|
+		\ setlocal expandtab |
+		\ setlocal autoindent	|
+		\ setlocal fileformat=unix   |
+augroup END
+
+augroup filetype_website
+    au!
+    au BufNewFile,BufRead *.js, *.html, *.css
+		\ setlocal tabstop=2 |
+		\ setlocal softtabstop=2	|
+		\ setlocal shiftwidth=2	|
+augroup END
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Plugin Configuration                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ale_fixers = {'python': ['isort', 'black']}
+let g:ale_fix_on_save=1
+
 let g:deoplete#sources#jedi#python_path="python3"
 let g:jedi#auto_initialization=0
 
-let g:jedi#completions_command=''
+" let g:jedi#completions_command=''
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -164,3 +187,5 @@ let g:UltiSnipsListSnippets="<C-S>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
