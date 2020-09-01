@@ -16,6 +16,7 @@ shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s cmdhist
 shopt -s dirspell
+shopt -s expand_aliases
 shopt -s extglob
 shopt -s histappend
 shopt -s lithist
@@ -45,7 +46,9 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[33;1m\]\w\[\033[m\]\n➥ "
 [ -x /usr/local/opt/findutils/libexec/gnubin ] && export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH" # for gnu findutils
 [ -x /usr/local/opt/grep/libexec/gnubin ] && export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH" # for gnu grep
 [ -x /usr/local/opt/make/libexec/gnubin ] && export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # for gnu make
+[ -x /usr/local/opt/gnu-sed/libexec/gnubin ] && export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH" # for gnu sed
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 [ -f ~/.aliases ] && source ~/.aliases
+export EDITOR="nvim"

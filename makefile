@@ -1,9 +1,14 @@
 USERNAME = $$(whoami)
 .PHONY = all clean dots brew clean-all clean-dots clean-brew
 
-all: dots brew
+build: dots
+ifeq ($(EDITOR),nvim)
+	nvim +UpdateRemotePlugins +qall
+endif
 
 clean: clean-dots 
+
+build-all: dots brew
 
 clean-all: clean-dots clean-brew
 
@@ -45,7 +50,7 @@ dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.skhdrc ~
 	-@ln -sv ~/.dotfiles/.inputrc ~
 	-@ln -sv ~/.dotfiles/.vim ~
-	-vim +PluginInstall +qall
+	-${EDITOR} +PluginInstall +qall
 
 clean-dots:
 	-@rm -v ~/.bash_profile
