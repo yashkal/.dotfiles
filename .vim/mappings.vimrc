@@ -11,7 +11,7 @@ let maplocalleader="\\"
 nnoremap <LEADER>ev :vsplit $MYVIMRC<CR>
 nnoremap <LEADER>sv :source $MYVIMRC<CR>
 nnoremap <LEADER>ff :FZF<CR>
-nnoremap <LEADER>ls :!ls -lF<CR>
+nnoremap <LEADER>fc :FZF ~/.dotfiles<CR>
 nnoremap <LEADER>=  m'gg=G`'zz
 
 " Insert newline
@@ -33,11 +33,16 @@ nnoremap <LEADER>H  H
 nnoremap <LEADER>M  M
 nnoremap <LEADER>L  L
 
-" Faster window navigation
-nnoremap <C-j>	<C-w><C-j> 
+"" Faster window navigation (including terminal mode)
+"" Figure out how not to interfere with fzf
+nnoremap <C-h>	<C-w><C-h>
+nnoremap <C-j>	<C-w><C-j>
 nnoremap <C-k>	<C-w><C-k>
 nnoremap <C-l>	<C-w><C-l>
-nnoremap <C-h>	<C-w><C-h>
+"tnoremap <C-h> <C-\><C-N><C-w>h
+"tnoremap <C-j> <C-\><C-N><C-w>j
+"tnoremap <C-k> <C-\><C-N><C-w>k
+"tnoremap <C-l> <C-\><C-N><C-w>l
 
 " Quick find and replace (substitute)
 " Interferes with autopairs plugin
@@ -54,7 +59,14 @@ inoremap <C-U>	<ESC>bgUiwea
 noremap Zz  <C-w>_ \| <C-w>\|
 noremap Zo  <C-w>=
 
+" <Esc> to exit terminal-mode
+:tnoremap <Esc> <C-\><C-n>
+
+" Simulates i_<C-R> in terminal-mode to use registers
+:tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
 " Function keys
 map <F2>    :set paste!<CR>:echo "'paste' is set to" &paste<CR>
+map <F7>    :SignifyDiff<CR>
+map <F8>    :echo "Current colorscheme:" get(g:, 'colors_name', 'default')<CR>
 map <F9>    :set wrap!<CR>
-

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# From Homebrew
+[ -x /usr/local/opt/coreutils/libexec/gnubin ] && export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # for gnu coreutils
+[ -x /usr/local/opt/findutils/libexec/gnubin ] && export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH" # for gnu findutils
+[ -x /usr/local/opt/grep/libexec/gnubin ] && export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH" # for gnu grep
+[ -x /usr/local/opt/make/libexec/gnubin ] && export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # for gnu make
+[ -x /usr/local/opt/gnu-sed/libexec/gnubin ] && export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH" # for gnu sed
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Loads Navi bash widget
+source <(echo "$(navi widget bash)")
+
+# Aliases
+alias apps="yabai -m query --windows | jq '.[].app'"
+alias cat="bat"
+alias ls="exa -h"
+alias pip3="echo 'Using Homebrew Python'; /usr/local/opt/python@3.8/bin/pip3"
+alias v="nvim"
+alias trash="trash -v"
+
+# Homebrew
+alias brewery="brew update && brew upgrade && brew cleanup"

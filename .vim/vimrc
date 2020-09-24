@@ -29,11 +29,17 @@ Plugin 'mhinz/vim-signify'
 Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki/vimwiki'
+" Colorschemes
+Plugin 'romainl/Apprentice'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'gosukiwi/vim-atom-dark'
 call vundle#end()
 
 filetype plugin indent on
+"set background=dark
+colorscheme PaperColor
 
-" Use 'gf' to jump to file under cursor
+"Use 'gf' to jump to file under cursor
 source $HOME/.vim/mappings.vimrc
 source $HOME/.vim/general.vimrc
 source $HOME/.vim/autocommands.vimrc

@@ -1,27 +1,41 @@
+SHELL := /bin/bash
 USERNAME = $$(whoami)
-.PHONY = all clean dots brew clean-all clean-dots clean-brew
 
-build: dots
+.PHONY = help
+help: ## Prints help for targets with comments
+	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+.PHONY = build
+build: dots ## Apply dotfiles ($EDITOR)
 ifeq ($(EDITOR),nvim)
 	nvim +UpdateRemotePlugins +qall
 endif
 
-clean: clean-dots 
+.PHONY = clean
+clean: clean-dots ## Remove dotfiles
 
-build-all: dots brew
+.PHONY = build-all
+build-all: build brew ## Install all dotfiles and apps (through Homebrew)
 
-clean-all: clean-dots clean-brew
+.PHONY = clean-all
+clean-all: clean-dots clean-brew ## Remove all dotfiles and apps
 
-/usr/local/bin/brew:
-	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
+.PHONY = brew
 brew: /usr/local/bin/brew
-	brew bundle 
+	brew bundle
 	@echo
 	@echo "If you haven't done so, run the following to use the newest Bash shell"
 	@echo "    chsh -s /usr/local/bin/bash"
 	@echo
 
+.PHONY = brew_diff
+brew_diff: ## (TODO) Check difference between Brew formulaes and casks
+	@mkdir tmp.dir
+	@-brew bundle dump --file=tmp.dir/Brewfile &> /dev/null
+	@comm <(sort Brewfile) <(sort tmp.dir/Brewfile)
+	@rm -rf tmp.dir
+
+.PHONY = clean-brew
 clean-brew:
 	brew ls -1 | xargs brew rm
 	brew cask ls -1 | xargs brew cask rm
@@ -38,13 +52,12 @@ clean-brew:
 	@echo "    sudo rm -rf /Users/$(USERNAME)/Library/Caches/Homebrew"
 	@echo
 
-.vim/bundle/Vundle.vim:
-	git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
-
+.PHONY = dots
 dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.bash_profile ~
 	-@ln -sv ~/.dotfiles/.bashrc ~
 	-@ln -sv ~/.dotfiles/.aliases ~
+	-@ln -sv ~/.dotfiles/.homebrew ~
 	-@ln -sv ~/.dotfiles/.tmux.conf ~
 	-@ln -sv ~/.dotfiles/.yabairc ~
 	-@ln -sv ~/.dotfiles/.skhdrc ~
@@ -52,13 +65,21 @@ dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.vim ~
 	-${EDITOR} +PluginInstall +qall
 
+.PHONY = clean-dots
 clean-dots:
 	-@rm -v ~/.bash_profile
 	-@rm -v ~/.bashrc
 	-@rm -v ~/.aliases
+	-@rm -v ~/.homebrew
 	-@rm -v ~/.tmux.conf
 	-@rm -v ~/.yabairc
 	-@rm -v ~/.skhdrc
 	-@rm -v ~/.inputrc
 	-rm -rf ~/.vim
 	-rm -rf .vim/bundle/
+
+.vim/bundle/Vundle.vim:
+	git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+
+/usr/local/bin/brew:
+	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

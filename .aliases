@@ -8,15 +8,10 @@ alias .....="cd ../../../.."
 alias -- -="cd -"
 
 # Quick command aliases
-alias apps="yabai -m query --windows | jq '.[].app'"
-alias cat="bat"
 alias g="git"
-alias ls="exa -h"
 alias m="make"
 alias p="python3"
-alias pip3="echo 'Using Homebrew Python'; /usr/local/opt/python@3.8/bin/pip3"
 alias t="tmux"
-alias v="nvim"
 
 # Quick navigation to config files
 alias dots="cd ~/.dotfiles/"
@@ -33,11 +28,7 @@ alias diff="diff --color=always"
 alias mkdir="mkdir -v"
 alias mv="mv -v"
 alias rm="rm -v"
-alias trash="trash -v"
 alias ln="ln -v"
-
-# Homebrew
-alias brewery="brew update && brew upgrade && brew cleanup"
 
 # Make reading man pages easier
 mantoc () {
