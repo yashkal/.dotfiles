@@ -3,7 +3,12 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Ale
-let g:ale_fixers = {'python': ['isort', 'black'], '*': ['remove_trailing_lines', 'trim_whitespace'], 'bash': ['shell', 'shfmt']}
+let g:ale_fixers = {
+	    \ 'bash': ['shell', 'shfmt'],
+	    \ 'html': ['prettier'],
+	    \ 'python': ['isort', 'black'],
+	    \ '*': ['remove_trailing_lines', 'trim_whitespace']
+	    \ }
 " Ignore line length for python
 let g:ale_python_flake8_options="--extend-ignore=E501"
 let g:ale_fix_on_save=1

@@ -5,6 +5,9 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
 # Automatically start tmux
+# TODO
+# ps -p $$ -o args,ppid
+# ps -p <process> -o args
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
@@ -25,7 +28,7 @@ shopt -s lithist
 # History
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-export HISTIGNORE="SECRET*:clear:token"
+export HISTIGNORE="*SECRET*:clear:*TOKEN*"
 export HISTCONTROL=ignoredups
 
 # Colors
