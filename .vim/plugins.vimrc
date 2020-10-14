@@ -1,6 +1,45 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Plugin Configuration                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+filetype off
+
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+"if has('nvim')
+"    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"    Plugin 'Shougo/deoplete.nvim'
+"    Plugin 'roxma/nvim-yarp'
+"    Plugin 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
+Plugin 'dense-analysis/ale'
+Plugin 'jiangmiao/auto-pairs'
+"Plugin 'deoplete-plugins/deoplete-jedi'
+Plugin 'junegunn/goyo.vim'
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'mhinz/vim-signify'
+Plugin 'honza/vim-snippets'
+Plugin 'tpope/vim-surround'
+Plugin 'vimwiki/vimwiki'
+" Colorschemes
+Plugin 'romainl/Apprentice'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'gosukiwi/vim-atom-dark'
+
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+call vundle#end()
+
+filetype plugin indent on
+"set background=dark
+colorscheme PaperColor
+
+" Coc vim helper config
+source $HOME/.vim/coc.vimrc
 
 " Ale
 let g:ale_fixers = {
