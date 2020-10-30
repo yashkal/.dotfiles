@@ -45,6 +45,7 @@ source $HOME/.vim/coc.vimrc
 let g:ale_fixers = {
 	    \ 'bash': ['shell', 'shfmt'],
 	    \ 'html': ['prettier'],
+	    \ 'javascript': ['eslint', 'prettier'],
 	    \ 'python': ['isort', 'black'],
 	    \ '*': ['remove_trailing_lines', 'trim_whitespace']
 	    \ }

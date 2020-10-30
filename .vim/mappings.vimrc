@@ -7,7 +7,7 @@ nnoremap <SPACE> <Nop>
 let mapleader="\<SPACE>"
 let maplocalleader="\\"
 
-" Make it easier to edit .vimrc
+" Leader mappings
 nnoremap <LEADER>sv :source $MYVIMRC<CR>
 nnoremap <LEADER>ff :FZF<CR>
 nnoremap <LEADER>fc :FZF ~/.dotfiles<CR>

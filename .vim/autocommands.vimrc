@@ -2,15 +2,6 @@
 "                                 Autocommands                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-augroup filetype_vim
-    au!
-    au FileType vim nnoremap <buffer> <LOCALLEADER>c I"\ <ESC>
-    au BufNewFile,BufRead *.js, *.html, *.css
-		\ setlocal tabstop=2 |
-		\ setlocal softtabstop=2	|
-		\ setlocal shiftwidth=2	|
-augroup END
-
 augroup filetype_python
     au!
     au FileType python nnoremap <buffer> <LOCALLEADER>c I#\ <ESC>

@@ -66,7 +66,7 @@ yabai -m rule --add app="^Sophos Anti-Virus$" manage=off
 yabai -m rule --add app="^Stickies$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Dictionary$" manage=off
-yabai -m rule --add app="^QuickTime Player$" manage=off
+yabai -m rule --add app="^QuickTime Player$" layer=above manage=off
 
 # show digital colour meter topmost and on all spaces
 yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on

@@ -27,8 +27,12 @@ alias cp="cp -v"
 alias diff="diff --color=always"
 alias mkdir="mkdir -v"
 alias mv="mv -v"
-alias rm="rm -v"
 alias ln="ln -v"
+
+# Ask cheat.sh website for details about a command.
+c() {
+  curl -m 10 "http://cheat.sh/${1}" 2>/dev/null || printf '%s\n' "[ERROR] Something broke"
+}
 
 # Make reading man pages easier
 man() {
@@ -43,7 +47,7 @@ man() {
 
 mantoc () {
     [ $# -gt 2 ] && echo Too many arguments
-    [ $# -eq 1 ] && man $1 | grep '^[A-Z]'
+    [ $# -eq 1 ] && man $1 | grep "^[A-Z]"
     [ $# -eq 2 ] && man -P "less -p ^'${2}'" $1
 }
 

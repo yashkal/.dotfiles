@@ -24,3 +24,6 @@ alias trash="trash -v"
 
 # Homebrew
 alias brewery="brew update && brew upgrade && brew cleanup"
+
+# Create some useful fzf aliases. For examples:
+# https://github.com/junegunn/fzf/wiki/examples#homebrew
