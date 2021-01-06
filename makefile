@@ -63,7 +63,7 @@ dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.skhdrc ~
 	-@ln -sv ~/.dotfiles/.inputrc ~
 	-@ln -sv ~/.dotfiles/.vim ~
-	-${EDITOR} +PluginInstall +qall
+	-$${EDITOR:-vim} +PluginInstall +qall
 
 .PHONY = clean-dots
 clean-dots:

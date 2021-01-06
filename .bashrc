@@ -8,8 +8,10 @@
 # TODO
 # ps -p $$ -o args,ppid
 # ps -p <process> -o args
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
+if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
+    if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+	tmux attach -t default || tmux new -s default
+    fi
 fi
 
 # Options

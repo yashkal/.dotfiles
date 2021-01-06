@@ -1,7 +1,7 @@
-#      _    _         _          
-#  ___| | _| |__   __| |_ __ ___ 
+#      _    _         _
+#  ___| | _| |__   __| |_ __ ___
 # / __| |/ / '_ \ / _` | '__/ __|
-# \__ \   <| | | | (_| | | | (__ 
+# \__ \   <| | | | (_| | | | (__
 # |___/_|\_\_| |_|\__,_|_|  \___|
 
 # A list of all built-in modifier and literal keywords can be found at
@@ -14,9 +14,12 @@
 # vifm
 # System Preferences
 #rcmd - return : open -a finder
+rshift + cmd - r : open -a "RStudio"
 rshift + cmd - s : open -a "spotify"
 rshift + cmd - t : open -a "iterm"
 rshift + cmd - c : open -a "Brave Browser"
+rshift + cmd - d : open -a "Discord"
+rshift + cmd - b : open ~/old-desktop/Advanced\ Books
 
 # toggle window fullscreen zoom
 rcmd - f : yabai -m window --toggle zoom-fullscreen
@@ -177,4 +180,3 @@ rshift + cmd - d : yabai -m window --resize right:-20:0
 #ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
 #ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
 #ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
-

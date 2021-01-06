@@ -23,15 +23,25 @@ alias src="v ~/.skhdrc"
 alias zrc="v ~/.zshrc"
 
 # Verbose output for common commands
-alias cp="cp -v"
+alias cp="cp -riv"
 alias diff="diff --color=always"
-alias mkdir="mkdir -v"
-alias mv="mv -v"
+alias mkdir="mkdir -vp"
+alias mv="mv -iv"
 alias ln="ln -v"
+alias ls="ls --color=auto"
+alias ll="ls -al"
+alias l.="ls -d .* --color=auto"
 
 # Ask cheat.sh website for details about a command.
 c() {
   curl -m 10 "http://cheat.sh/${1}" 2>/dev/null || printf '%s\n' "[ERROR] Something broke"
+}
+
+doi-resolver() {
+    # https://citation.crosscite.org/docs.html
+    # curl -m 20 -LH "Accept: application/vnd.citationstyles.csl+json" https://doi.org/"${1}"
+    curl -m 20 -LH "Accept: application/x-bibtex" https://doi.org/"${1}"
+    echo
 }
 
 # Make reading man pages easier
