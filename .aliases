@@ -12,6 +12,7 @@ alias g="git"
 alias m="make"
 alias p="python3"
 alias t="tmux"
+alias v='$EDITOR'
 
 # Quick navigation to config files
 alias dots="cd ~/.dotfiles/"
@@ -24,7 +25,8 @@ alias zrc="v ~/.zshrc"
 
 # Verbose output for common commands
 alias cp="cp -riv"
-alias diff="diff --color=always"
+#alias diff="diff --color=always"
+alias diff="diff -u"
 alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 alias ln="ln -v"

@@ -21,11 +21,11 @@ build-all: build brew ## Install all dotfiles and apps (through Homebrew)
 clean-all: clean-dots clean-brew ## Remove all dotfiles and apps
 
 .PHONY = brew
-brew: /usr/local/bin/brew
-	brew bundle
+brew: /opt/homebrew
+	-brew bundle
 	@echo
 	@echo "If you haven't done so, run the following to use the newest Bash shell"
-	@echo "    chsh -s /usr/local/bin/bash"
+	@echo "    chsh -s /opt/homebrew/bin/bash"
 	@echo
 
 .PHONY = brew_diff
@@ -37,13 +37,13 @@ brew_diff: ## (TODO) Check difference between Brew formulaes and casks
 
 .PHONY = clean-brew
 clean-brew:
-	brew ls -1 | xargs brew rm
-	brew cask ls -1 | xargs brew cask rm
-	chsh -s /bin/bash
+	brew list --formula -1 | xargs brew uninstall
+	brew list --cask -1 | xargs brew uninstall --cask
+	[ -x /bin/zsh ] && chsh -s /bin/zsh || chsh -s /bin/bash
 	@echo
 	@echo "Run the following to uninstall Homebrew:"
 	@echo
-	@echo '    ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"'
+	@echo '    /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"'
 	@echo
 	@echo "May want to run the following to make sure Homebrew & Cask are gone:"
 	@echo
@@ -81,5 +81,5 @@ clean-dots:
 .vim/bundle/Vundle.vim:
 	git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
 
-/usr/local/bin/brew:
-	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/opt/homebrew: # For ARM MacBook
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

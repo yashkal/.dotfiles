@@ -9,6 +9,10 @@
 
 # TODO: Allow fullscreen mode not to cover top of bar
 
+# For Big Sur
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
 # bar settings
 yabai -m config status_bar                   off
 yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"
@@ -75,6 +79,6 @@ yabai -m rule --add app="^QuickTime Player$" sticky=on
 # switch to native full screen when opening
 yabai -m rule --add app="^iTerm2$" native-fullscreen=on
 yabai -m rule --add app="^Alacritty$" native-fullscreen=on
-yabai -m rule --add app="^Spotify$" native-fullscreen=on
+#yabai -m rule --add app="^Spotify$" native-fullscreen=on
 
 echo "yabai configuration loaded.."

@@ -1,4 +1,3 @@
-#      _    _         _
 #  ___| | _| |__   __| |_ __ ___
 # / __| |/ / '_ \ / _` | '__/ __|
 # \__ \   <| | | | (_| | | | (__
@@ -14,12 +13,14 @@
 # vifm
 # System Preferences
 #rcmd - return : open -a finder
+rshift + cmd - a : open -a "Acrobat Reader"
 rshift + cmd - r : open -a "RStudio"
-rshift + cmd - s : open -a "spotify"
 rshift + cmd - t : open -a "iterm"
 rshift + cmd - c : open -a "Brave Browser"
-rshift + cmd - d : open -a "Discord"
-rshift + cmd - b : open ~/old-desktop/Advanced\ Books
+rshift + cmd - b : open -a "calibre"
+rshift + cmd - z : open -a "zoom.us"
+rshift + cmd - d : open ~/Dropbox
+rshift + cmd - s : open -a "Spotify"
 
 # toggle window fullscreen zoom
 rcmd - f : yabai -m window --toggle zoom-fullscreen

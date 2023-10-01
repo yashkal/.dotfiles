@@ -4,18 +4,9 @@
 # | |_) | (_| \__ \ | | | | | (__
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
-# Automatically start tmux
-# TODO
-# ps -p $$ -o args,ppid
-# ps -p <process> -o args
-if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
-    if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-	tmux attach -t default || tmux new -s default
-    fi
-fi
-
 # Options
-shopt -s autocd
+# https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+# TIP: Use "gx" to open link under cursor
 shopt -s cdable_vars
 shopt -s cdspell
 shopt -s checkjobs
@@ -49,9 +40,11 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # User defined files
-source ~/.aliases
-[ -f ~/.homebrew ] && source ~/.homebrew
-export EDITOR="nvim"
+[ -f $HOME/.aliases ] && source $HOME/.aliases
+[ -f $HOME/.homebrew ] && source $HOME/.homebrew
+
+# Use nvim if available, else use vim
+[ -x "$(command -v nvim)" ] && export EDITOR="nvim" || export EDITOR="vim"
 
 # Prompt
 # https://www.tecmint.com/customize-bash-colors-terminal-prompt-linux/
@@ -59,5 +52,17 @@ export EDITOR="nvim"
 export PS1="\[\e[36m\]\u\[\e[m\]"			# Username
 export PS1="${PS1}@"					# @
 export PS1="${PS1}\[\e[33;1m\]\w\[\e[m\] "		# Host
-export PS1="${PS1}"'\[\e[35;4m\]$(__docker_machine_ps1 "[%s]")\[\e[m\]'    # docker-machine prompt
+#export PS1="${PS1}"'\[\e[35;4m\]$(__docker_machine_ps1 "[%s]")\[\e[m\]'    # docker-machine prompt
 export PS1="${PS1}\n➥ "					# Newline
+
+[ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash
+
+# Automatically start tmux
+# TODO
+# ps -p $$ -o args,ppid
+# ps -p <process> -o args
+if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
+    if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+	tmux attach -t default || tmux new -s default
+    fi
+fi
