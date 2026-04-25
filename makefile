@@ -65,6 +65,28 @@ dots: .vim/bundle/Vundle.vim
 	-@ln -sv ~/.dotfiles/.vim ~
 	-$${EDITOR:-vim} +PluginInstall +qall
 
+.PHONY = stow-bash
+stow-bash: ## Install bash dotfiles using stow
+	stow -v bash
+
+.PHONY = stow-tmux
+stow-tmux: ## Install tmux dotfiles using stow
+	stow -v tmux
+
+.PHONY = stow-all
+stow-all: stow-bash stow-tmux ## Install all stow-managed dotfiles
+
+.PHONY = unstow-bash
+unstow-bash: ## Remove bash dotfiles using stow
+	stow -v -D bash
+
+.PHONY = unstow-tmux
+unstow-tmux: ## Remove tmux dotfiles using stow
+	stow -v -D tmux
+
+.PHONY = unstow-all
+unstow-all: unstow-bash unstow-tmux ## Remove all stow-managed dotfiles
+
 .PHONY = clean-dots
 clean-dots:
 	-@rm -v ~/.bash_profile
