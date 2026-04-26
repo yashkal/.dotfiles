@@ -30,4 +30,4 @@ alias youtube-dl="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'"
 
 
 # Homebrew
-alias brewery="brew update && brew upgrade && brew autoremove && brew cleanup && brew upgrade --greedy --dry-run"
+alias brewery="brew update && brew upgrade && brew autoremove && brew cleanup && brew upgrade --greedy --dry-run; echo 'Run brew upgrade --greedy to update these casks'"

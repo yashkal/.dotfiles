@@ -2,3 +2,4 @@
 .vim/.netrwhist
 *.swp
 Brewfile.lock.json
+.aider*

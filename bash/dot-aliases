@@ -34,21 +34,24 @@ alias ls="ls --color=auto"
 alias ll="ls -al"
 alias l.="ls -d .* --color=auto"
 
+# LLMs
+alias aider='DYLD_LIBRARY_PATH="/opt/homebrew/opt/expat/lib" aider'
+
 # Ask cheat.sh website for details about a command.
 c() {
   curl -m 10 "http://cheat.sh/${1}" 2>/dev/null || printf '%s\n' "[ERROR] Something broke"
 }
 
 doi-resolver() {
-    # https://citation.crosscite.org/docs.html
-    # curl -m 20 -LH "Accept: application/vnd.citationstyles.csl+json" https://doi.org/"${1}"
-    curl -m 20 -LH "Accept: application/x-bibtex" https://doi.org/"${1}"
-    echo
+  # https://citation.crosscite.org/docs.html
+  # curl -m 20 -LH "Accept: application/vnd.citationstyles.csl+json" https://doi.org/"${1}"
+  curl -m 20 -LH "Accept: application/x-bibtex" https://doi.org/"${1}"
+  echo
 }
 
 # Make reading man pages easier
 man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_md=$'\e[01;31m' \
     LESS_TERMCAP_me=$'\e[0m' \
     LESS_TERMCAP_se=$'\e[0m' \
     LESS_TERMCAP_so=$'\e[01;44;33m' \
@@ -57,12 +60,21 @@ man() {
     command man "$@"
 }
 
-mantoc () {
-    [ $# -gt 2 ] && echo Too many arguments
-    [ $# -eq 1 ] && man $1 | grep "^[A-Z]"
-    [ $# -eq 2 ] && man -P "less -p ^'${2}'" $1
+mantoc() {
+  [ $# -gt 2 ] && echo Too many arguments
+  [ $# -eq 1 ] && man $1 | grep "^[A-Z]"
+  [ $# -eq 2 ] && man -P "less -p ^'${2}'" $1
 }
 
-wttr () {
-    curl -s https://wttr.in/ | head -n 7
+wttr() {
+  curl -s https://wttr.in/ | head -n 7
 }
+
+load_secrets() {
+  if [ -z "$BW_SESSION" ]; then
+    export BW_SESSION=$(bw unlock --raw)
+  fi
+
+  export ANTHROPIC_API_KEY=$(bw get password "Anthropic API Key")
+}
+
