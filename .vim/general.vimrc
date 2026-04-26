@@ -45,3 +45,7 @@ set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
+
+" Store undo files in a dedicated directory
+set undofile
+set undodir=~/.vim/undodir
